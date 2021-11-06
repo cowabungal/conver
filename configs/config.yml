@@ -1,0 +1,6 @@
+db:
+  username: "cowabunga"
+  host: "46.101.187.234"
+  port: "5432"
+  dbname: "conver_db"
+  sslmode: "disable"
