@@ -22,9 +22,8 @@ func (s *Server) start(m *telebot.Message) {
 func (s *Server) help(m *telebot.Message) {
 	logrus.Printf("Помощь from: %s; id: %d; ms: %s", m.Sender.Username, m.Sender.ID, m.Text)
 
-	// ДЛЯ РАЗРАБОТКИ, ПОТОМ УБРАТЬ
 	s.service.User.ChangeState(m.Sender.ID, "default")
-	s.bot.Send(m.Sender, "Слова поддержки).")
+	s.bot.Send(m.Sender, "Слова поддержки). Если что-то пошло не так, или есть пожелания по улучшению бота, смело пишите @Cowabunga_a.")
 }
 
 func (s *Server) convert(m *telebot.Message) {
@@ -62,7 +61,9 @@ func (s *Server) pdf(m *telebot.Message) {
 		_, err = s.bot.Send(m.Sender, &telebot.Document{
 			File:      telebot.File{FileLocal: fmt.Sprintf("./assets/%d/conver.pdf", m.Sender.ID)},
 			Thumbnail: nil,
-			Caption:   "",
+			Caption:   "📋 Твой pdf файл готов.\n" +
+				"💬 Если есть пожелания по улучшению бота, пишите @Cowabunga_a.\n" +
+				"✓ Официальный канал бота @botconver",
 			MIME:      "",
 			FileName:  "conver.pdf",
 		})

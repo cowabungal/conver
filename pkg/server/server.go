@@ -4,7 +4,6 @@ import (
 	"conver/pkg/server/buttons"
 	"conver/pkg/service"
 	"github.com/sirupsen/logrus"
-	"go.uber.org/ratelimit"
 	"gopkg.in/tucnak/telebot.v2"
 	"log"
 	"os"
@@ -15,7 +14,6 @@ type Server struct {
 	service    *service.Service
 	bot    *telebot.Bot
 	button *buttons.Buttons
-	rl *ratelimit.Limiter
 	upd chan *telebot.Update
 }
 
@@ -35,7 +33,7 @@ func (s *Server) processPhoto(updCh chan *telebot.Update)  {
 		select {
 		case v1 := <-updCh:
 			s.photo(v1.Message)
-			time.Sleep(100 *time.Millisecond)
+			time.Sleep(500 *time.Millisecond)
 		}
 	}
 }
@@ -73,6 +71,5 @@ func NewBotServer(s *service.Service) *Server {
 
 	menu := telebot.ReplyMarkup{ResizeReplyKeyboard: true}
 	bu := buttons.NewButtons(menu)
-	rl := ratelimit.New(100000) //per 100ms
-	return &Server{service: s, bot: b, button: bu, rl: &rl, upd: updCh}
+	return &Server{service: s, bot: b, button: bu, upd: updCh}
 }
