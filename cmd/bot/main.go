@@ -58,6 +58,11 @@ func CreateDirs(r *repository.Repository)  {
 		logrus.Fatalf("failed to initialize dirs %s", err.Error())
 	}
 
+	err = os.Mkdir("./assets", 0o777)
+	if err != nil {
+		logrus.Error(err.Error())
+	}
+
 	for _, v := range *usersId {
 		err = os.Mkdir(fmt.Sprintf("./assets/%d", v), 0o777)
 		if err != nil {
