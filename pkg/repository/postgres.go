@@ -3,6 +3,7 @@ package repository
 import (
 	"fmt"
 	"github.com/jmoiron/sqlx"
+	"time"
 )
 
 const (
@@ -26,7 +27,7 @@ func NewPostgresDB(cfg Config) (*sqlx.DB, error) {
 	if err != nil {
 		return nil, err
 	}
-
+	db.SetConnMaxLifetime(5 * time.Second)
 	err = db.Ping()
 
 	return db, err

@@ -82,7 +82,8 @@ func (r *UserRepository) GetCallbackId(userId int) (int, error) {
 func (r *UserRepository) DeleteCallback(userId int) error {
 	query := fmt.Sprintf("DELETE FROM %s WHERE user_id=$1", callbacksTable)
 
-	_, err := r.db.Query(query, userId)
+	rows, err := r.db.Query(query, userId)
+	rows.Close()
 
 	return err
 }
