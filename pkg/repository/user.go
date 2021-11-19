@@ -16,7 +16,7 @@ func NewUserRepository(db *sqlx.DB) *UserRepository {
 func (r *UserRepository) CreateUser(username string, userId int) error {
 	var id int
 
-	query := fmt.Sprintf("INSERT INTO %s (username, user_id) values ($1, $2)", usersTable)
+	query := fmt.Sprintf("INSERT INTO %s (username, user_id) values ($1, $2) RETURNING id", usersTable)
 
 	row := r.db.QueryRow(query, username, userId)
 	err := row.Scan(&id)
