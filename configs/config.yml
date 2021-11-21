@@ -1,6 +1,6 @@
 db:
   username: "cowabunga"
-  host: "157.245.22.40"
+  host: "cowabungadb.postgres.database.azure.com"
   port: "5432"
-  dbname: "cowabunga"
+  dbname: "conver_db"
   sslmode: "disable"
