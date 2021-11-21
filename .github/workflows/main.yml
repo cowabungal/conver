@@ -12,8 +12,8 @@ env:
   REGISTRY: "cowabungal"
   IMAGE_NAME: "conver"
   CONTAINER_NAME: "conver"
-  ENV_FILE_PATH: "./conver/.env"
-  LOGS_PATH: "/root/conver/logs/prod"
+  ENV_FILE_PATH: "/home/cowabunga/conver/.env"
+  LOGS_PATH: "/home/cowabunga/conver/logs/prod"
 
 jobs:
   build_and_push:
